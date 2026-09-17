@@ -3,9 +3,10 @@
 
     python3 store/banner/make_banner.py
 
-Dark ground, the heartbeat running across it, the app icon and title top left, and the
-SIDE effect's logo along the bottom. The wave is drawn oversized and reduced so it stays smooth,
-and its quiet stretch is put where the logo sits so the two never touch.
+One idea carries the picture: the heartbeat leaves the mouth of the SIDE effect's Pac-Man, which
+lies off the left edge so that only the two tips of its mouth reach in, and runs the full width as
+the main wave. No separate icon tile. The logo sits along the bottom, and the wave's quiet stretch
+is placed above it so the two never touch.
 """
 import math
 import os
@@ -17,11 +18,18 @@ ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 W, H, SS = 720, 320, 3
 GROUND = (18, 22, 30)
 RED = (232, 62, 74)
-WAVE = (196, 44, 58)
+ORANGE = (255, 132, 0)
 WHITE = (245, 248, 252)
-GREY = (158, 168, 180)
+GREY = (168, 178, 190)
 LOGO_GREY = (225, 232, 240)
 LOGO_WIDTH = 185
+
+BASELINE = 168          # the mouth axis, and the line the wave rests on
+MOUTH_DEG = 34          # half angle of the open mouth
+MOUTH_TIP_X = 30        # how far the tips reach in: an accent, no more
+MOUTH_R = 52            # small enough that the tips do not compete with the logo's own Pac-Man
+WAVE_W = 10
+AMP = 78
 
 FONT_BOLD = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
@@ -60,27 +68,28 @@ def main():
     im = Image.new('RGB', (W * SS, H * SS), GROUND)
     d = ImageDraw.Draw(im)
 
-    # Two beats across the picture, their flat stretch over the corner the logo will occupy.
-    baseline = int(H * 0.60) * SS
-    amp = 86 * SS
+    # The mouth the wave comes out of. Its centre lies off the picture; only the tips reach in.
+    cx = MOUTH_TIP_X - MOUTH_R * math.cos(math.radians(MOUTH_DEG))
+    box = [(cx - MOUTH_R) * SS, (BASELINE - MOUTH_R) * SS,
+           (cx + MOUTH_R) * SS, (BASELINE + MOUTH_R) * SS]
+    d.pieslice(box, start=MOUTH_DEG, end=360 - MOUTH_DEG, fill=ORANGE)
+
+    # One long wave out of the mouth: quiet, two beats, quiet again over the logo's corner.
+    start_x = MOUTH_TIP_X - 10
+    d.line([(start_x * SS, BASELINE * SS), (300 * SS, BASELINE * SS)], fill=RED, width=WAVE_W * SS)
     for beat in range(2):
-        x0 = (260 + beat * 250) * SS
-        x1 = x0 + 250 * SS
-        pts = [(x0 + (x1 - x0) * f, baseline + amp * v) for f, v in BEAT]
-        d.line(pts, fill=WAVE, width=9 * SS, joint='curve')
-    d.line([(0, baseline), (260 * SS, baseline)], fill=WAVE, width=9 * SS)
-    d.line([(760 * SS, baseline), (W * SS, baseline)], fill=WAVE, width=9 * SS)
+        x0 = (300 + beat * 200) * SS
+        x1 = x0 + 200 * SS
+        pts = [(x0 + (x1 - x0) * f, BASELINE * SS + AMP * SS * v) for f, v in BEAT]
+        d.line(pts, fill=RED, width=WAVE_W * SS, joint='curve')
+    d.line([(700 * SS, BASELINE * SS), (W * SS, BASELINE * SS)], fill=RED, width=WAVE_W * SS)
 
     im = im.resize((W, H), Image.LANCZOS)
     d = ImageDraw.Draw(im)
 
-    icon = Image.open(os.path.join(ROOT, 'store', 'icon', 'icon_master.png')).convert('RGBA')
-    icon = icon.resize((120, 120), Image.LANCZOS)
-    im.paste(icon, (36, 30), icon)
-
-    d.text((184, 40), 'Heart Rate FX', font=ImageFont.truetype(FONT_BOLD, 52), fill=WHITE)
-    d.text((186, 104), 'Your pulse as a trace, a sound and a light',
-           font=ImageFont.truetype(FONT, 20), fill=GREY)
+    d.text((92, 30), 'Heart Rate FX', font=ImageFont.truetype(FONT_BOLD, 54), fill=WHITE)
+    d.text((96, 96), 'Your pulse as a trace, a sound and a light',
+           font=ImageFont.truetype(FONT, 21), fill=GREY)
 
     logo = prepare_logo()
     im.paste(logo, (30, H - logo.height - 8), logo)

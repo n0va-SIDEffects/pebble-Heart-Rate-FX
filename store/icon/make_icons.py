@@ -19,8 +19,12 @@ DARK = (18, 22, 30)
 RED = (232, 62, 74)
 ORANGE = (255, 132, 0)
 
-PAC_X, PAC_Y, PAC_R = 108, 512, 200      # Pac-Man, cropped by the left edge: a nod, not the subject
+# The Pac-Man lies almost entirely outside the picture. Only the two tips of its open mouth reach
+# in from the left, as an accent; MOUTH_TIP_X says how far.
+PAC_Y, PAC_R = 512, 360
 PAC_MOUTH_DEG = 34                       # half angle of the open mouth
+MOUTH_TIP_X = 110
+PAC_X = MOUTH_TIP_X - PAC_R * math.cos(math.radians(PAC_MOUTH_DEG))
 LINE_W = 74                              # thickness of the heartbeat line
 
 # One P-QRS-T complex as fractions of the run, and of the amplitude.
@@ -41,7 +45,7 @@ def draw(size=M, background=DARK, pac=True, line=RED, transparent=False, weight=
         d.pieslice(box, start=PAC_MOUTH_DEG, end=360 - PAC_MOUTH_DEG,
                    fill=(line if transparent else ORANGE))
 
-    x0 = (PAC_X if pac else 60) * k
+    x0 = ((MOUTH_TIP_X - 14) if pac else 60) * k
     x1 = (M - 40) * k
     amp = 300 * k
     pts = [(x0 + (x1 - x0) * f, PAC_Y * k + amp * v) for f, v in BEAT]
