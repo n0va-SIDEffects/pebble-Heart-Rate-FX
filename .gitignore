@@ -6,3 +6,5 @@ package-lock.json
 
 # Store-Paket
 store/release/*.zip
+__pycache__/
+*.pyc
