@@ -112,7 +112,7 @@ In der Pebble-App auf dem Handy über das Zahnrad neben Heart Rate FX:
 | Grundhelligkeit beim Pulsieren | 0 bis 100 |
 | Kurvengeschwindigkeit | langsam 25 px/s, normal 50 px/s, schnell 75 px/s |
 | Kurvenfarbe | grün, rot, weiß, gelb, türkis (nur Farbdisplays) |
-| Sprache auf der Uhr | Englisch (Vorgabe) oder Deutsch |
+| Sprache auf der Uhr | Englisch (Vorgabe), Deutsch, Französisch, Spanisch, Italienisch, Niederländisch, Portugiesisch, Polnisch, Schwedisch |
 | Puls simulieren | an/aus, derselbe Demo-Modus wie der lange Druck auf DOWN |
 
 Alles wird auf der Uhr gespeichert und gilt sofort, ohne die App neu zu starten.
@@ -190,7 +190,11 @@ Damit die Pebble-App das Zahnrad überhaupt anzeigt, führt `package.json` die F
 `configurable`. Ohne diesen Eintrag bleibt die Einstellungsseite unsichtbar, auch wenn sie fertig
 im Paket liegt.
 
-Die Seite folgt der Sprache des Handys, englisch oder deutsch. Die Sprache auf der Uhr ist davon unabhängig einstellbar.
+Die Seite folgt der Sprache des Handys, englisch oder deutsch. Die Sprache auf der Uhr ist davon
+unabhängig einstellbar und kennt neun Sprachen: Englisch, Deutsch, Französisch, Spanisch,
+Italienisch, Niederländisch, Portugiesisch, Polnisch und Schwedisch. Die Schrift der Uhr deckt
+Latin Extended-A ab, Akzente und die polnischen Zeichen erscheinen also richtig; im Emulator
+nachgesehen, nicht geraten.
 
 Die Seite selbst baut [Clay](https://github.com/pebble/clay). Clay liegt als reines JavaScript in
 `src/pkjs/vendor/clay.js` statt als Pebble-Paket, weil das veröffentlichte Paket die neuen
@@ -258,7 +262,7 @@ im Emulator: `pebble emu-button --emulator diorite push down`, kurz warten, `...
 | `src/c/settings.c` | Einstellungen: Vorgaben, Speichern, Auswerten der Handy-Nachricht |
 | `src/c/beep.c` | Ton: Sample pro Schlag oder über den Strom, Tonhöhe |
 | `src/c/audio_pump.c` | hält den Tonstrom gefüllt, aus dem Skill „pebble-audio" |
-| `src/c/strings.c` | die Texte auf dem Bildschirm, englisch und deutsch |
+| `src/c/strings.c` | die Texte auf dem Bildschirm, in neun Sprachen |
 | `store/icon/make_icons.py` | zeichnet Icon und Launcher-Icon in allen Größen |
 | `store/banner/make_banner.py` | zeichnet das Store-Banner |
 | `src/c/app_clock.c` | Uhrzeit, um den Sekundensprung der Firmware bereinigt |

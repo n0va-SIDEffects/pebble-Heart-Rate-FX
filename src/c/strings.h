@@ -1,8 +1,12 @@
 /*
- * The few words the watch puts on screen, in English and German.
+ * The few words the watch puts on screen.
  *
  * English is the default: the app is published in an English-only store, and its screenshots have
- * to match what a buyer sees. German is a setting away.
+ * to match what a buyer sees. Any other language is one setting away.
+ *
+ * Only languages written in Latin script are offered. The watch's own font was checked on the
+ * hardware and draws the whole of Latin Extended-A, so accented and Polish letters come out
+ * properly; Cyrillic and Greek would need a font of their own.
  */
 #pragma once
 
@@ -10,7 +14,15 @@
 
 typedef enum {
   StrLanguageEnglish = 0,
-  StrLanguageGerman = 1,
+  StrLanguageGerman,
+  StrLanguageFrench,
+  StrLanguageSpanish,
+  StrLanguageItalian,
+  StrLanguageDutch,
+  StrLanguagePortuguese,
+  StrLanguagePolish,
+  StrLanguageSwedish,
+  StrLanguageCount,
 } StrLanguage;
 
 typedef enum {

@@ -10,4 +10,5 @@ First release.
 - Vibration click per beat
 - Settings on the phone: sound, pitch, volume, vibration, backlight, trace speed and colour,
   language, demo pulse
-- English and German
+- Nine languages on the watch: English, German, French, Spanish, Italian, Dutch, Portuguese,
+  Polish and Swedish

@@ -167,7 +167,14 @@ var config = [
         defaultValue: 0,
         options: [
           { label: 'English', value: 0 },
-          { label: 'Deutsch', value: 1 }
+          { label: 'Deutsch', value: 1 },
+          { label: 'Français', value: 2 },
+          { label: 'Español', value: 3 },
+          { label: 'Italiano', value: 4 },
+          { label: 'Nederlands', value: 5 },
+          { label: 'Português', value: 6 },
+          { label: 'Polski', value: 7 },
+          { label: 'Svenska', value: 8 }
         ]
       }
     ]

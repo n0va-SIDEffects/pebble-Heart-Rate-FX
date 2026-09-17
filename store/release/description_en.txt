@@ -1,16 +1,16 @@
 Your pulse as a trace, a sound and a light.
 Heart Rate FX turns your watch into a bedside monitor. It reads the optical sensor and shows every beat three ways at once: a sweeping ECG-style trace, a short monitor beep through the speaker, and the backlight swelling in time with your heart.
 
-Where the watch reports the interval between two measured beats, the app follows those intervals rather than an averaged number, so the rhythm on screen is the rhythm in your chest. The status line says "Live" when it does.
+Where the watch reports the interval between two measured beats, the app follows those intervals rather than an averaged number, so the rhythm on screen is the rhythm in your chest. The status line says "Live" then.
 
 FEATURES
 - Sweeping trace that draws a P-QRS-T complex for every beat
 - Monitor beep at 880 Hz, held on a stream so the amplifier cannot click between beats
-- Backlight that pulses with the beat, in any colour, with an adjustable resting brightness
-- Vibration click on every beat, for watches without a speaker and for quiet rooms
-- Beep pitch, volume, trace speed and trace colour all adjustable
+- Backlight that pulses with the beat, in any colour, at an adjustable floor
+- Vibration click on every beat, for quiet rooms and watches with no speaker
+- Beep pitch, volume, trace speed and trace colour adjustable
 - Demo pulse for showing the app without a sensor
-- English and German
+- English, German, French, Spanish, Italian, Dutch, Portuguese, Polish, Swedish
 
 BUTTONS
 - Select: vibration on or off

@@ -122,7 +122,7 @@ void settings_read_dict(Settings *settings, DictionaryIterator *iter) {
   settings->trace_color = clamp_u8(dict_int(iter, MESSAGE_KEY_TRACE_COLOR, settings->trace_color),
                                    0, PALETTE_LEN - 1);
   settings->language = clamp_u8(dict_int(iter, MESSAGE_KEY_LANGUAGE, settings->language),
-                                StrLanguageEnglish, StrLanguageGerman);
+                                StrLanguageEnglish, StrLanguageCount - 1);
   settings->demo = dict_int(iter, MESSAGE_KEY_DEMO, settings->demo) != 0;
 }
 
