@@ -1,0 +1,54 @@
+{
+  "name": "heart-rate-fx",
+  "author": "Mike Heissen",
+  "version": "1.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Heart Rate FX",
+    "uuid": "72901d59-fab9-449d-b3cd-43926085b2fc",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "capabilities": [
+      "health",
+      "configurable"
+    ],
+    "messageKeys": [
+      "SOUND_ON",
+      "VOLUME",
+      "PITCH",
+      "VIBE_ON",
+      "VIBE_MS",
+      "BACKLIGHT",
+      "SWEEP_MS",
+      "TRACE_COLOR",
+      "DEMO",
+      "LIGHT_COLOR",
+      "LIGHT_FLOOR",
+      "LANGUAGE",
+      "REQUEST_SETTINGS"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "bitmap",
+          "name": "IMAGE_MENU_ICON",
+          "file": "images/launcher_icon.png",
+          "menuIcon": true
+        }
+      ]
+    }
+  }
+}
