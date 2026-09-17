@@ -183,8 +183,12 @@ Der Vibrationsmotor ist im Lautsprecher der Uhr hörbar, nicht nur am Handgelenk
 reinen Monitor-Ton will, schaltet die Vibration aus, entweder in den Einstellungen oder mit der
 Auswahltaste.
 
-Unten auf der Seite sitzt ein Knopf „Buy me a coffee“. Die Adresse steht als `DONATION_URL` oben in
-`src/pkjs/config.js`; ist sie leer, fällt der ganze Abschnitt weg.
+Unten auf der Seite sitzt ein Knopf „Buy me a coffee“ im Gelb von Buy Me a Coffee (#FFDD00 mit
+schwarzer Schrift, gedrückt #F2D100) statt in Clays Orange. Die Farbregel steht in
+`src/pkjs/custom-clay.js` und greift über das Attribut `data-donate="bmc"` am Knopf; Clays eigene
+Regeln sind einfache Klassenselektoren, deshalb trägt sie `!important`. Die Adresse steht als
+`DONATION_URL` oben in `src/pkjs/config.js` und noch einmal in `custom-clay.js`, weil Clay die
+Funktion als Text in die Seite schreibt; ist `DONATION_URL` leer, fällt der ganze Abschnitt weg.
 
 Damit die Pebble-App das Zahnrad überhaupt anzeigt, führt `package.json` die Fähigkeit
 `configurable`. Ohne diesen Eintrag bleibt die Einstellungsseite unsichtbar, auch wenn sie fertig

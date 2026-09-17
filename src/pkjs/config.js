@@ -213,7 +213,13 @@ if (DONATION_URL) {
                         'Die App ist kostenlos und ohne Werbung. Wenn sie dir Freude macht, ' +
                         'freue ich mich über einen Kaffee.')
       },
-      { type: 'button', id: 'donate', primary: true, defaultValue: '☕ Buy me a coffee' }
+      {
+        type: 'button',
+        id: 'donate',
+        defaultValue: '☕ Buy me a coffee',
+        // custom-clay.js paints this one in Buy Me a Coffee's yellow; the attribute is its handle.
+        attributes: { 'data-donate': 'bmc' }
+      }
     ]
   });
 }

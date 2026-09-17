@@ -96,6 +96,11 @@ var declared = require(path.join(root, 'package.json')).pebble.messageKeys;
 var clay = new Clay(config, custom, {autoHandleEvents: false});
 var page = decodeURIComponent(clay.generateUrl().replace(/^data:text\/html;charset=utf-8,/, ''));
 
+// Handy for looking at the page: CONFIG_PAGE_OUT=/tmp/page.html node tools/check_config_page.js
+if (process.env.CONFIG_PAGE_OUT) {
+  fs.writeFileSync(process.env.CONFIG_PAGE_OUT, page);
+}
+
 var leftovers = page.match(/require\([^)]*\)/g);
 check(!leftovers, 'the page carries no require() call',
       leftovers ? leftovers.join(', ') : 'none');
@@ -122,6 +127,12 @@ check(unused.length === 0, 'every declared key appears on the page',
       unused.join(', ') || 'none unused');
 check(ids.indexOf('donate') >= 0 && page.indexOf('buymeacoffee.com') >= 0,
       'the donation button and its address are in the page');
+// The button is meant to wear Buy Me a Coffee's yellow, which takes the marker on the item and
+// the rule in custom-clay.js. Losing either one leaves it in Clay's orange.
+check(page.indexOf('data-donate=\\"bmc\\"') >= 0 || page.indexOf('data-donate="bmc"') >= 0,
+      'the donation button carries its marker');
+check(page.toLowerCase().indexOf('#ffdd00') >= 0,
+      'the page holds the Buy Me a Coffee yellow');
 check(page.length < 1500000, 'the page fits in a data URL', page.length + ' characters');
 
 console.log('');
